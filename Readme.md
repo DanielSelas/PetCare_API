@@ -1,69 +1,93 @@
+# PetCare API – Backend for PetCare SDK
 
+**PetCare API** is the backend service for the PetCare SDK, developed as part of a seminar project. It provides a RESTful interface for managing pet-related data such as pet profiles, health info, and interactions with other app modules like PetCareLib and the mobile app frontend.
 
+Repository: [DanielSelas/PetCare_API](https://github.com/DanielSelas/PetCare_API)
 
-The PetCare project is an Android-based application with an integrated API service that helps users manage pet-related data, such as pet details, vaccination status, breed, age, and more. The project consists of two main parts:
-	1.	The PetCare Android Application: A mobile app developed to interact with the PetCare API.
-	2.	The PetCare API: A backend service built with Flask and MongoDB to store and manage pet data.
+---
 
-This repository also includes a PetCareLib Android library that wraps the API and provides developers with methods to interact with the backend easily.
+## Overview
 
+The API serves as the foundation of the PetCare ecosystem, allowing developers to store, retrieve, and manage pet data in a structured and secure way. It is built to be lightweight, extendable, and easy to integrate with Android applications via the companion PetCareLib library.
 
-Architecture
-The project follows a client-server architecture with a mobile app (client) and a Flask API (server) connected to a MongoDB database.
+---
 
-Components:
-	1.	PetCare Android App:
-	    •	A native Android app written in Java that interacts with the backend API to fetch, update, or delete pet data.
-	    •	The app uses Retrofit for API requests.
-	2.	PetCareLib:
-	    •	An Android library module that simplifies the interaction with the PetCare API. It wraps API calls and provides Java developers with easy-to-use methods to fetch or manage pet data.
-	3.	PetCare API:
-	    •	Built with Flask(Python), it exposes various endpoints to handle operations such as adding a pet, fetching pet data, updating pet details, and deleting pet data.
-	    •	MongoDB stores the pet information, including details such as name, breed, age, last vaccination status, etc.
+## Core Features
 
+### Pet Management
+- Add, edit, or delete pet profiles
+- Track details like breed, age, weight, gender, and vaccination status
 
-Features
-    1. PetCare API
-	    •	GET /get_all_pets: Fetch all pets from the database.
-	    •	GET /get_pet_by_name/<name>: Fetch pet details by name.
-	    •	POST /add_pet: Add a new pet to the database.
-	    •	PUT /update_pet/<name>: Update details for an existing pet.
-	    •	DELETE /delete_pet/<name>: Delete a pet from the database.
+### Owner Integration
+- Associate pets with specific owners
+- View owner details and manage pet ownership
 
-    2. PetCare Android App
-	    •	View Pets: Users can view a list of pets stored in the system.
-	    •	Add Pets: Users can add new pets, including their breed, age, vaccination status, etc.
-	    •	Update Pets: Modify existing pet details.
-	    •	Delete Pets: Delete pet records from the database.
+### Smart Structuring
+- Designed to support future enhancements such as reminders, medical history, or nutrition tracking
 
+### Lightweight Security
+- Basic validation and input sanitization
+- Easily extendable to include user authentication
 
+---
 
-Usage
-PetCare API
-	1.	Start the Flask API:
-    	•	Navigate to the project directory containing the Flask app.
-    	•	Run python3 app.py in macOS or py app.py in Windows to start the Flask API.
-    	•	The API will be available at http://127.0.0.1:8088.
-	2.	API Endpoints:
-    	•	Use tools like Postman or curl to interact with the API:
-    	•	GET all pets: http://127.0.0.1:8088/get_all_pets
-    	•	POST add pet: http://127.0.0.1:8088/add_pet
+## Tech Stack
 
-PetCare Android Application
-	1.	Clone the repository:
-	    •	Clone this repository to your local machine.
-    	•	Open the project in Android Studio.
-	2.	Run the App:
-    	•	In Android Studio, click on Run to launch the app.
-    	•	The app should be connected to the locally running PetCare API.
-	3.	Using PetCareLib:
-    	•	PetCareLib is included as a module. You can use it to make API calls in your app:
+- Backend Framework: Spring Boot (Java)
+- Database: In-memory or file-based persistence (initial version)
+- Data Format: JSON (RESTful design)
+- Build Tool: Maven
+- IDE: Visual Studio Code
 
+---
 
-Installation
-	1.	Clone the repository:
-        git clone https://github.com/DanielSelas/PetCare.git
-    2.	Navigate to the project folder and install the necessary dependencies.
-	3.	Run the Flask API on your local machine.
-	4.	Open the Android project in Android Studio.
-	5.	Run the app using Android Studio on a physical or virtual device.
+## API Endpoints
+
+You can find the detailed endpoint documentation in the `src/main/java/.../controller` package.
+
+Typical endpoints include:
+
+- `GET /pets` – Get all pets  
+- `POST /pets` – Add a new pet  
+- `PUT /pets/{id}` – Update pet info  
+- `DELETE /pets/{id}` – Remove a pet  
+
+Each pet includes:
+- Name  
+- Breed  
+- Age (in months)  
+- Weight (kg)  
+- Gender  
+- Last vaccinated (in months)  
+- Microchipped status  
+- Owner name  
+
+---
+
+## Testing & Integration
+
+The API is designed to be consumed by the PetCareLib library, which wraps the endpoints and provides simple method calls for mobile developers.
+
+---
+
+## Future Extensions
+
+- Full authentication layer (JWT or OAuth)
+- Persistent database integration (e.g. PostgreSQL or MongoDB)
+- Medical records and reminders
+- Role-based access (vet, owner, admin)
+
+---
+
+## Contributing
+
+If you'd like to suggest improvements or use this structure for your own pet-based apps, feel free to fork the repo and open a pull request.
+
+---
+
+## Related Projects
+
+- PetCareLib – Android library wrapper for this API  
+- PetCare App – Mobile frontend that integrates both SDK and API
+
+---
